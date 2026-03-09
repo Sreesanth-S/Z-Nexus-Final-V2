@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 import Event from './models/Event.js';
 import connectDB from './config/db.js';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { associationService } from '../services/api';
+import { associationService, getMediaUrl } from '../services/api';
 import { User, Phone, Mail } from 'lucide-react';
 
 const AssociationMembers = () => {
@@ -48,7 +48,7 @@ const AssociationMembers = () => {
         >
             <div className="w-48 h-48 rounded-full border-4 border-white/10 mb-6 shadow-2xl relative profile-img-container">
                 <img
-                    src={member.photo ? `http://localhost:5000${member.photo}` : 'https://via.placeholder.com/200'}
+                    src={member.photo ? getMediaUrl(member.photo) : 'https://via.placeholder.com/200'}
                     alt={member.name}
                     className="w-full h-full object-cover flex-shrink-0 rounded-full border-[3px] border-pink-500 profile-neon-ring"
                 />

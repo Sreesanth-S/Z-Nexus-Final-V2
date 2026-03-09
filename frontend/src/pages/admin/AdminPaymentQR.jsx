@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { paymentQRService } from '../../services/api';
+import { paymentQRService, getMediaUrl } from '../../services/api';
 import { Camera, Save } from 'lucide-react';
 
 const AdminPaymentQR = () => {
@@ -22,7 +22,7 @@ const AdminPaymentQR = () => {
             setCurrentQR(safe);
             setUpiText(safe.text || '');
             if (safe.image) {
-                setPreview(`http://localhost:5000${safe.image}`);
+                setPreview(getMediaUrl(safe.image));
             }
         } catch (err) {
             console.error('Failed to load QR:', err.message);

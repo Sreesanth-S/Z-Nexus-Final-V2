@@ -1,7 +1,20 @@
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+const MEDIA_BASE_URL = (import.meta.env.VITE_MEDIA_BASE_URL || '').replace(/\/$/, '');
+
+export const getMediaUrl = (resourcePath) => {
+    if (!resourcePath) return '';
+    if (/^https?:\/\//i.test(resourcePath) || resourcePath.startsWith('data:')) {
+        return resourcePath;
+    }
+
+    const normalizedPath = resourcePath.startsWith('/') ? resourcePath : `/${resourcePath}`;
+    return `${MEDIA_BASE_URL}${normalizedPath}`;
+};
+
 const API = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: API_BASE_URL,
 });
 
 // Add interceptor to include auth token

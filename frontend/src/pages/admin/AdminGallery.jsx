@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { galleryService } from '../../services/api';
+import { galleryService, getMediaUrl } from '../../services/api';
 import { Plus, Trash2, Image as ImageIcon, Upload, X } from 'lucide-react';
 
 const AdminGallery = () => {
@@ -137,7 +137,7 @@ const AdminGallery = () => {
                                 className="sticker-card p-0 overflow-hidden group relative"
                             >
                                 <img
-                                    src={`http://localhost:5000${img.imageUrl}`}
+                                    src={getMediaUrl(img.imageUrl)}
                                     alt={img.title}
                                     className="w-full h-48 object-cover"
                                 />
