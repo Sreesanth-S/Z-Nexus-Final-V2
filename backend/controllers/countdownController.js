@@ -3,11 +3,8 @@ import Countdown from '../models/Countdown.js';
 export const getCountdown = async (req, res) => {
     try {
         const countdown = await Countdown.findOne().sort({ createdAt: -1 });
-        if (countdown) {
-            res.json(countdown);
-        } else {
-            res.status(404).json({ message: 'No countdown found' });
-        }
+        // Return null instead of 404 when countdown is not configured yet.
+        res.json(countdown || null);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
